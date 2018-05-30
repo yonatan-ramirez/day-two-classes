@@ -69,11 +69,6 @@ class Employee{
     this.name = name;
   }
 }
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
 class Person{
   protected name: string;
   constructor(name: string){
@@ -82,7 +77,7 @@ class Person{
 }
 class Worker extends Person{
   private department: string;
-
+  
   constructor(name: string, department: string){
     super(name);
     this.department = department;
@@ -91,13 +86,36 @@ class Worker extends Person{
     return `My name is ${this.name} and I work in ${this.department}.`;
   }
 }
+interface Stuff{
+  name: string;
+  age: number;
+  department?: string;
+  foo?(s: string): string;
+  foo?(n:number): number;
+  
+}
+class StuffTwo implements Stuff{
+  name:string;
+  age: number;
+
+foo?(s:string){
+  this.name = s;
+}
+}
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
 export class AppComponent implements OnInit{
   title = 'app works!';
   ngOnInit(){
     // this.classTesting();
     // this.animalClassTesting();
     // this.classCompatibilityTesting();
-    this.extendDerivedClassTesting();
+    // this.extendDerivedClassTesting();
+    this.interfaceTesting({name: "xyz", age: 25 });
   }
   classTesting() {
     const greeter = new Greeting('world!');
@@ -136,6 +154,13 @@ export class AppComponent implements OnInit{
     // console.log(worker.name);
     // const person = Person("Patrick");
     // console.log(person);
+  }
+  interfaceTesting(x: Stuff){
+    console.log(`${x.name} is ${x.age} years old and works in ${x.department}.`);
+    // x.foo(5);
+    const stuff = new StuffTwo();
+    stuff.foo("Test");
+    console.log(stuff.name);
   }
 }
 
