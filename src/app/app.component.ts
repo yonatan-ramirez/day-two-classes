@@ -97,7 +97,16 @@ export class AppComponent implements OnInit{
     // this.classTesting();
     // this.animalClassTesting();
     // this.classCompatibilityTesting();
-    this.extendDerivedClassTesting();
+    // this.extendDerivedClassTesting();
+
+    // testing generics
+    const positions: number [] = [234, 235, 23, 534];
+    const colors: string[] = ["red","Blue", "Yellow", "Green"];
+    console.log('random number selected', this.randomIntElem(positions) );
+    console.log('random string selected', this.randomStrElem(colors) );
+    
+    console.log('random number selected', this.randomIntElem(positions) );
+    console.log('random string selected', this.randomStrElem(colors) );
   }
   classTesting() {
     const greeter = new Greeting('world!');
@@ -136,6 +145,20 @@ export class AppComponent implements OnInit{
     // console.log(worker.name);
     // const person = Person("Patrick");
     // console.log(person);
+  }
+  randomIntElem(arr:number[]): number{
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+  }
+
+  randomStrElem(arr:string[]):string {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+  }
+  randomElem(arr: any[]): any {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+    
   }
 }
 
