@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { COMPONENT_VARIABLE } from '@angular/platform-browser/src/dom/dom_renderer';
 
 class Greeting{
   message: string;
@@ -69,6 +70,19 @@ class Employee{
     this.name = name;
   }
 }
+// modules
+module Shapes{
+  export class Rectangle{
+    // height: number;
+    // width: number;
+    // constructor(height: number, width: number) {
+    //   this.height = height;
+    //   this.width = width;
+    // }
+    constructor(public height: number, public width: number){}
+  }
+  const rect1 = new Rectangle(10,4);
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -97,7 +111,13 @@ export class AppComponent implements OnInit{
     // this.classTesting();
     // this.animalClassTesting();
     // this.classCompatibilityTesting();
-    this.extendDerivedClassTesting();
+    // this.extendDerivedClassTesting();
+
+    // testing modules
+
+    const rect2 = new Shapes.Rectangle(20, 10);
+    console.log(rect2);
+    // console.log(shapes.rect1);
   }
   classTesting() {
     const greeter = new Greeting('world!');
